@@ -56,7 +56,7 @@ class Db(object):
         return days
 
     def __dataitem(self,i):
-        return {'action':i[0], 'count':i[1],'started_at':i[2],'perday':float(i[1])/self.__daygap(i[2])}
+        return {'action':i[0], 'count':i[1],'started_at':i[2],'perday':round(float(i[1])/self.__daygap(i[2]),2)}
 
     def data(self):
         rs=self.__select("SELECT action,count,started_at FROM %s ORDER BY count DESC" % TABLE)

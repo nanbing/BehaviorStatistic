@@ -16,9 +16,15 @@ from pygooglechart import Axis
       
 WIDTH=500
 
+def __max_x(data):
+    result=0
+    for i in data:
+        if i>result:
+            result=i
+    return result
 
 def __fullfile_chart(title,data,labels,color):
-    chart=StackedHorizontalBarChart(WIDTH, len(data)*40)
+    chart=StackedHorizontalBarChart(WIDTH, len(data)*40,x_range=[0,__max_x(data)])
     chart.set_colours([color])
     chart.add_data(data)
     chart.set_axis_labels(Axis.TOP,[title])
